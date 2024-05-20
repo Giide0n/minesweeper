@@ -1,7 +1,7 @@
 const boardState = [];
+const boardSize = 10;
 
 document.addEventListener('DOMContentLoaded', () => {
-  const boardSize = 10;
   const board = document.getElementById('board');
 
   for (let i = 0; i < boardSize; i++) {
@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  placeMines();
+
   const tileSize = getTileSize(document.getElementsByClassName('tile').item(0));
   board.style.width = boardSize * tileSize + 'px';
 });
@@ -28,6 +30,22 @@ const revealTile = (event) => {
 
   tile.classList.add('revealed')
   tile.innerHTML = boardState[tile.row][tile.col];
+}
+
+const placeMines = () => {
+  const numberOfMines = Math.pow(boardSize, 2) / 10;
+  const mineCoordinates = new Set();
+
+  while(mineCoordinates.size < numberOfMines) {
+    const row = Math.floor(Math.random() * boardSize);
+    const col = Math.floor(Math.random() * boardSize);
+    mineCoordinates.add(`${row},${col}`);
+  }
+
+  mineCoordinates.forEach(m => {
+    const [row, col] = m.split(',');
+    boardState[row][col] = '*';
+  });
 }
 
 const getTileSize = (tile) => {
