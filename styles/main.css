@@ -28,5 +28,15 @@ body {
   height: var(--tile-size);
   margin: 2px;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: lightgray;
+  font-size: 21px;
+  color: ghostwhite;
+}
+
+.tile.revealed {
   background-color: gray;
 }
