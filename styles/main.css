@@ -18,6 +18,10 @@ body {
   align-items: center;
 }
 
+.difficulty-select {
+  margin-bottom: 16px;
+}
+
 #board {
   display: flex;
   flex-wrap: wrap;
@@ -37,8 +41,12 @@ body {
   color: ghostwhite;
 }
 
+.tile:hover {
+  cursor: pointer;
+}
+
 .tile.flagged {
-  background-color: aqua;
+  background-image: url("../resources/flag.svg");
 }
 
 .tile.revealed {
@@ -47,6 +55,10 @@ body {
 
 .tile.revealed.mine {
   background-color: red;
+  background-image: url("../resources/mine.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  color: transparent;
 }
 
 .tile.revealed.number-1 {

@@ -46,7 +46,8 @@ const initializeBoard = () => {
 }
 
 const setDifficulty = () => {
-  const difficulty = document.querySelector('input[name="difficulty"]:checked').value;
+  const difficulty = document.querySelector(
+      'input[name="difficulty"]:checked').value;
   switch (difficulty) {
     case 'easy':
       boardHeight = 9;
