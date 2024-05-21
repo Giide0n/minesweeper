@@ -29,7 +29,7 @@ const initializeBoard = () => {
       tile.classList.add('tile');
       tile.row = i;
       tile.col = j;
-      tile.addEventListener('click', revealTile);
+      tile.addEventListener('click', clickTile);
       tile.addEventListener('contextmenu', flagTile);
 
       boardState[i].push(EMPTY);
@@ -67,24 +67,30 @@ const setDifficulty = () => {
   }
 }
 
-const revealTile = (event) => {
+const clickTile = (event) => {
   event.preventDefault();
-  const tile = event.currentTarget;
+  revealTile(event.currentTarget);
+}
+
+const revealTile = (tile) => {
   if (!tile.classList.contains('flagged')) {
     const tileClass = getTileClass(boardState[tile.row][tile.col]);
     tile.classList.add('revealed', tileClass);
     tile.innerHTML = boardState[tile.row][tile.col];
 
     if (boardState[tile.row][tile.col] === EMPTY) {
-      for (let i = Math.max(tile.row - 1, 0);
-          i <= Math.min(tile.row + 1, boardHeight - 1);
-          i++) {
-        for (let j = Math.max(tile.col - 1, 0);
-            j <= Math.min(tile.col + 1, boardWidth - 1);
-            j++) {
-        }
-      }
+      maybeReveal(Math.max(tile.row - 1, 0), tile.col);
+      maybeReveal(Math.min(tile.row + 1, boardHeight - 1), tile.col);
+      maybeReveal(tile.row, Math.max(tile.col - 1, 0));
+      maybeReveal(tile.row, Math.min(tile.col + 1, boardWidth - 1));
     }
+  }
+}
+
+const maybeReveal = (row, col) => {
+  const tile = document.querySelectorAll('.tile')[boardWidth * row + col];
+  if (!tile.classList.contains('revealed')) {
+    revealTile(tile);
   }
 }
 
