@@ -7,6 +7,11 @@ let boardWidth;
 let numberOfMines;
 
 document.addEventListener('DOMContentLoaded', () => {
+  const radioButtons = document.querySelectorAll('input[name="difficulty"]');
+  radioButtons.forEach(r => {
+    r.addEventListener('change', initializeBoard);
+  });
+
   initializeBoard();
 });
 
@@ -24,7 +29,8 @@ const initializeBoard = () => {
       tile.classList.add('tile');
       tile.row = i;
       tile.col = j;
-      tile.addEventListener('click', revealTile)
+      tile.addEventListener('click', revealTile);
+      tile.addEventListener('contextmenu', flagTile);
 
       boardState[i].push(EMPTY);
 
@@ -53,18 +59,21 @@ const setDifficulty = () => {
       numberOfMines = 40;
       break;
     case 'hard':
-      boardHeight = 30;
-      boardWidth = 16;
+      boardHeight = 16;
+      boardWidth = 30;
       numberOfMines = 99;
       break;
   }
 }
 
 const revealTile = (event) => {
+  event.preventDefault();
   const tile = event.currentTarget;
-  const tileClass = getTileClass(boardState[tile.row][tile.col]);
-  tile.classList.add('revealed', tileClass);
-  tile.innerHTML = boardState[tile.row][tile.col];
+  if (!tile.classList.contains('flagged')) {
+    const tileClass = getTileClass(boardState[tile.row][tile.col]);
+    tile.classList.add('revealed', tileClass);
+    tile.innerHTML = boardState[tile.row][tile.col];
+  }
 }
 
 const getTileClass = (field) => {
@@ -83,6 +92,18 @@ const getTileClass = (field) => {
   }
 
   return tileClass;
+}
+
+const flagTile = (event) => {
+  event.preventDefault();
+  const tile = event.currentTarget;
+  if (!tile.classList.contains('revealed')) {
+    if (tile.classList.contains('flagged')) {
+      tile.classList.remove('flagged');
+    } else {
+      tile.classList.add('flagged');
+    }
+  }
 }
 
 const placeMines = () => {

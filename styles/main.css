@@ -37,6 +37,10 @@ body {
   color: ghostwhite;
 }
 
+.tile.flagged {
+  background-color: aqua;
+}
+
 .tile.revealed {
   background-color: #e0e0e0;
 }
