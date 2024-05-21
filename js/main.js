@@ -129,7 +129,6 @@ const clickSolve = () => {
 }
 
 const solve = (tile) => {
-  console.log(tile);
   tile.classList.remove('flagged');
   setTileRevealed(tile);
 
@@ -137,10 +136,10 @@ const solve = (tile) => {
     if(tile.row + 1 < boardHeight) {
       solve(getTile(tile.row + 1, tile.col));
     }
-    if(tile.col + 1 < boardWidth) {
+    if(tile.row === 0) {
       solve(getTile(tile.row, tile.col + 1));
     }
-  }, 75);
+  }, 25);
 }
 
 const flagTile = (event) => {
