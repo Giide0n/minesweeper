@@ -1,15 +1,25 @@
 const MINE = '*';
 const EMPTY = '';
 
-const boardState = [];
-const boardSize = 10;
+let boardState = [];
+let boardHeight;
+let boardWidth;
+let numberOfMines;
 
 document.addEventListener('DOMContentLoaded', () => {
-  const board = document.getElementById('board');
+  initializeBoard();
+});
 
-  for (let i = 0; i < boardSize; i++) {
+const initializeBoard = () => {
+  setDifficulty();
+
+  const board = document.getElementById('board');
+  board.innerHTML = '';
+  boardState = [];
+
+  for (let i = 0; i < boardHeight; i++) {
     boardState.push([])
-    for (let j = 0; j < boardSize; j++) {
+    for (let j = 0; j < boardWidth; j++) {
       const tile = document.createElement('div');
       tile.classList.add('tile');
       tile.row = i;
@@ -26,8 +36,29 @@ document.addEventListener('DOMContentLoaded', () => {
   calculateDangerLevels();
 
   const tileSize = getTileSize(document.getElementsByClassName('tile').item(0));
-  board.style.width = boardSize * tileSize + 'px';
-});
+  board.style.width = boardWidth * tileSize + 'px';
+}
+
+const setDifficulty = () => {
+  const difficulty = document.querySelector('input[name="difficulty"]:checked').value;
+  switch (difficulty) {
+    case 'easy':
+      boardHeight = 9;
+      boardWidth = 9;
+      numberOfMines = 10;
+      break;
+    case 'medium':
+      boardHeight = 16;
+      boardWidth = 16;
+      numberOfMines = 40;
+      break;
+    case 'hard':
+      boardHeight = 30;
+      boardWidth = 16;
+      numberOfMines = 99;
+      break;
+  }
+}
 
 const revealTile = (event) => {
   const tile = event.currentTarget;
@@ -55,12 +86,11 @@ const getTileClass = (field) => {
 }
 
 const placeMines = () => {
-  const numberOfMines = Math.pow(boardSize, 2) / 10;
   const mineCoordinates = new Set();
 
   while (mineCoordinates.size < numberOfMines) {
-    const row = Math.floor(Math.random() * boardSize);
-    const col = Math.floor(Math.random() * boardSize);
+    const row = Math.floor(Math.random() * boardHeight);
+    const col = Math.floor(Math.random() * boardWidth);
     mineCoordinates.add(`${row},${col}`);
   }
 
@@ -81,9 +111,9 @@ const calculateDangerLevels = () => {
 }
 
 const increaseDanger = (row, col) => {
-  for (let i = Math.max(row - 1, 0); i <= Math.min(row + 1, boardSize - 1);
+  for (let i = Math.max(row - 1, 0); i <= Math.min(row + 1, boardHeight - 1);
       i++) {
-    for (let j = Math.max(col - 1, 0); j <= Math.min(col + 1, boardSize - 1);
+    for (let j = Math.max(col - 1, 0); j <= Math.min(col + 1, boardWidth - 1);
         j++) {
       if (boardState[i][j] !== MINE) {
         boardState[i][j] = boardState[i][j] === EMPTY ? 1 : parseInt(
