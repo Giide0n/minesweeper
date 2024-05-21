@@ -12,7 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
     r.addEventListener('change', initializeBoard);
   });
 
-  document.getElementById('solve').addEventListener('click', clickSolve);
+  document.getElementById('solve').addEventListener('click', () => {
+    solve(getTile(0, 0));
+  });
+
+  document.getElementById('restart').addEventListener('click', initializeBoard);
 
   initializeBoard();
 });
@@ -31,8 +35,11 @@ const initializeBoard = () => {
       tile.classList.add('tile');
       tile.row = i;
       tile.col = j;
-      tile.addEventListener('click', clickTile);
       tile.addEventListener('contextmenu', flagTile);
+      tile.addEventListener('click', (event) => {
+        event.preventDefault();
+        revealTile(event.currentTarget);
+      });
 
       boardState[i].push(EMPTY);
 
@@ -67,11 +74,6 @@ const setDifficulty = () => {
       numberOfMines = 99;
       break;
   }
-}
-
-const clickTile = (event) => {
-  event.preventDefault();
-  revealTile(event.currentTarget);
 }
 
 const revealTile = (tile) => {
@@ -124,19 +126,15 @@ const getTileClass = (field) => {
   return tileClass;
 }
 
-const clickSolve = () => {
-  solve(getTile(0, 0));
-}
-
 const solve = (tile) => {
   tile.classList.remove('flagged');
   setTileRevealed(tile);
 
   setTimeout(() => {
-    if(tile.row + 1 < boardHeight) {
+    if (tile.row + 1 < boardHeight) {
       solve(getTile(tile.row + 1, tile.col));
     }
-    if(tile.row === 0) {
+    if (tile.row === 0) {
       solve(getTile(tile.row, tile.col + 1));
     }
   }, 25);
