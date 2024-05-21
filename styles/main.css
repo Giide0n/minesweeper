@@ -32,11 +32,47 @@ body {
   justify-content: center;
   align-items: center;
 
-  background-color: lightgray;
+  background-color: #bbb;
   font-size: 21px;
   color: ghostwhite;
 }
 
 .tile.revealed {
-  background-color: gray;
+  background-color: #e0e0e0;
+}
+
+.tile.revealed.mine {
+  background-color: red;
+}
+
+.tile.revealed.number-1 {
+  color: blue;
+}
+
+.tile.revealed.number-2 {
+  color: green;
+}
+
+.tile.revealed.number-3 {
+  color: red;
+}
+
+.tile.revealed.number-4 {
+  color: darkblue;
+}
+
+.tile.revealed.number-5 {
+  color: brown;
+}
+
+.tile.revealed.number-6 {
+  color: cyan;
+}
+
+.tile.revealed.number-7 {
+  color: black;
+}
+
+.tile.revealed.number-8 {
+  color: gray;
 }

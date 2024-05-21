@@ -31,9 +31,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const revealTile = (event) => {
   const tile = event.currentTarget;
-
-  tile.classList.add('revealed')
+  const tileClass = getTileClass(boardState[tile.row][tile.col]);
+  tile.classList.add('revealed', tileClass);
   tile.innerHTML = boardState[tile.row][tile.col];
+}
+
+const getTileClass = (field) => {
+  let tileClass;
+
+  switch (field) {
+    case MINE:
+      tileClass = 'mine';
+      break;
+    case EMPTY:
+      tileClass = 'empty';
+      break;
+    default:
+      tileClass = 'number-' + field;
+      break;
+  }
+
+  return tileClass;
 }
 
 const placeMines = () => {
