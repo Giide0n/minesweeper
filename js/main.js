@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     r.addEventListener('change', initializeBoard);
   });
 
+  document.getElementById('solve').addEventListener('click', clickSolve);
+
   initializeBoard();
 });
 
@@ -74,9 +76,7 @@ const clickTile = (event) => {
 
 const revealTile = (tile) => {
   if (!tile.classList.contains('flagged')) {
-    const tileClass = getTileClass(boardState[tile.row][tile.col]);
-    tile.classList.add('revealed', tileClass);
-    tile.innerHTML = boardState[tile.row][tile.col];
+    setTileRevealed(tile);
 
     if (boardState[tile.row][tile.col] === EMPTY) {
       setTimeout(() => {
@@ -89,11 +89,21 @@ const revealTile = (tile) => {
   }
 }
 
+const setTileRevealed = (tile) => {
+  const tileClass = getTileClass(boardState[tile.row][tile.col]);
+  tile.classList.add('revealed', tileClass);
+  tile.innerHTML = boardState[tile.row][tile.col];
+}
+
 const maybeReveal = (row, col) => {
-  const tile = document.querySelectorAll('.tile')[boardWidth * row + col];
+  const tile = getTile(row, col);
   if (!tile.classList.contains('revealed')) {
     revealTile(tile);
   }
+}
+
+const getTile = (row, col) => {
+  return document.querySelectorAll('.tile')[boardWidth * row + col];
 }
 
 const getTileClass = (field) => {
@@ -112,6 +122,25 @@ const getTileClass = (field) => {
   }
 
   return tileClass;
+}
+
+const clickSolve = () => {
+  solve(getTile(0, 0));
+}
+
+const solve = (tile) => {
+  console.log(tile);
+  tile.classList.remove('flagged');
+  setTileRevealed(tile);
+
+  setTimeout(() => {
+    if(tile.row + 1 < boardHeight) {
+      solve(getTile(tile.row + 1, tile.col));
+    }
+    if(tile.col + 1 < boardWidth) {
+      solve(getTile(tile.row, tile.col + 1));
+    }
+  }, 75);
 }
 
 const flagTile = (event) => {
