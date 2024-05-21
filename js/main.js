@@ -74,6 +74,17 @@ const revealTile = (event) => {
     const tileClass = getTileClass(boardState[tile.row][tile.col]);
     tile.classList.add('revealed', tileClass);
     tile.innerHTML = boardState[tile.row][tile.col];
+
+    if (boardState[tile.row][tile.col] === EMPTY) {
+      for (let i = Math.max(tile.row - 1, 0);
+          i <= Math.min(tile.row + 1, boardHeight - 1);
+          i++) {
+        for (let j = Math.max(tile.col - 1, 0);
+            j <= Math.min(tile.col + 1, boardWidth - 1);
+            j++) {
+        }
+      }
+    }
   }
 }
 
@@ -133,9 +144,11 @@ const calculateDangerLevels = () => {
 }
 
 const increaseDanger = (row, col) => {
-  for (let i = Math.max(row - 1, 0); i <= Math.min(row + 1, boardHeight - 1);
+  for (let i = Math.max(row - 1, 0);
+      i <= Math.min(row + 1, boardHeight - 1);
       i++) {
-    for (let j = Math.max(col - 1, 0); j <= Math.min(col + 1, boardWidth - 1);
+    for (let j = Math.max(col - 1, 0);
+        j <= Math.min(col + 1, boardWidth - 1);
         j++) {
       if (boardState[i][j] !== MINE) {
         boardState[i][j] = boardState[i][j] === EMPTY ? 1 : parseInt(
