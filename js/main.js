@@ -79,10 +79,12 @@ const revealTile = (tile) => {
     tile.innerHTML = boardState[tile.row][tile.col];
 
     if (boardState[tile.row][tile.col] === EMPTY) {
-      maybeReveal(Math.max(tile.row - 1, 0), tile.col);
-      maybeReveal(Math.min(tile.row + 1, boardHeight - 1), tile.col);
-      maybeReveal(tile.row, Math.max(tile.col - 1, 0));
-      maybeReveal(tile.row, Math.min(tile.col + 1, boardWidth - 1));
+      setTimeout(() => {
+        maybeReveal(Math.max(tile.row - 1, 0), tile.col);
+        maybeReveal(Math.min(tile.row + 1, boardHeight - 1), tile.col);
+        maybeReveal(tile.row, Math.max(tile.col - 1, 0));
+        maybeReveal(tile.row, Math.min(tile.col + 1, boardWidth - 1));
+      }, 75)
     }
   }
 }
