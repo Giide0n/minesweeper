@@ -28,9 +28,16 @@ body {
   position: absolute;
   background-color: white;
   padding: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  transform: translateY(-100px);
+  transition: visibility 0s, opacity 0.3s ease, transform 0.3s ease;
 }
+
 .popover.popover-open {
   visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 #board {

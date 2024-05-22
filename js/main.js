@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const initializeBoard = () => {
+  resetScreens();
   setDifficulty();
 
   const board = document.getElementById('board');
@@ -77,7 +78,8 @@ const setDifficulty = () => {
 }
 
 const clickTile = (tile) => {
-  if (!tile.classList.contains('flagged')) {
+  if (!tile.classList.contains('flagged')
+      && !tile.classList.contains('revealed')) {
     revealTile(tile);
 
     if (boardState[tile.row][tile.col] === EMPTY) {
