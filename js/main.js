@@ -38,7 +38,7 @@ const initializeBoard = () => {
       tile.addEventListener('contextmenu', flagTile);
       tile.addEventListener('click', (event) => {
         event.preventDefault();
-        revealTile(event.currentTarget);
+        clickTile(event.currentTarget);
       });
 
       boardState[i].push(EMPTY);
@@ -76,9 +76,9 @@ const setDifficulty = () => {
   }
 }
 
-const revealTile = (tile) => {
+const clickTile = (tile) => {
   if (!tile.classList.contains('flagged')) {
-    setTileRevealed(tile);
+    revealTile(tile);
 
     if (boardState[tile.row][tile.col] === EMPTY) {
       setTimeout(() => {
@@ -87,11 +87,13 @@ const revealTile = (tile) => {
         maybeReveal(tile.row, Math.max(tile.col - 1, 0));
         maybeReveal(tile.row, Math.min(tile.col + 1, boardWidth - 1));
       }, 75)
+    } else if (boardState[tile.row][tile.col] === MINE) {
+      showLossScreen();
     }
   }
 }
 
-const setTileRevealed = (tile) => {
+const revealTile = (tile) => {
   const tileClass = getTileClass(boardState[tile.row][tile.col]);
   tile.classList.add('revealed', tileClass);
   tile.innerHTML = boardState[tile.row][tile.col];
@@ -100,7 +102,7 @@ const setTileRevealed = (tile) => {
 const maybeReveal = (row, col) => {
   const tile = getTile(row, col);
   if (!tile.classList.contains('revealed')) {
-    revealTile(tile);
+    clickTile(tile);
   }
 }
 
@@ -128,7 +130,7 @@ const getTileClass = (field) => {
 
 const solve = (tile) => {
   tile.classList.remove('flagged');
-  setTileRevealed(tile);
+  revealTile(tile);
 
   setTimeout(() => {
     if (tile.row + 1 < boardHeight) {

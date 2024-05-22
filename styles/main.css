@@ -22,6 +22,17 @@ body {
   margin-bottom: 16px;
 }
 
+.popover {
+  visibility: hidden;
+
+  position: absolute;
+  background-color: white;
+  padding: 8px;
+}
+.popover.popover-open {
+  visibility: visible;
+}
+
 #board {
   display: flex;
   flex-wrap: wrap;
