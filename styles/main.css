@@ -78,8 +78,19 @@ body {
   }
 }
 
+@keyframes flip-bg {
+  from {
+    color: transparent;
+    background-color: #bbb;
+  }
+  33% {
+    color: inherit;
+    background-color: #e0e0e0;
+  }
+}
+
 .tile.revealed {
-  animation: flip 2s ease;
+  animation: flip 0.6s ease, flip-bg 0.6s step-end;
   background-color: #e0e0e0;
   transform: rotateY(0deg);
 }
