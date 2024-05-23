@@ -88,10 +88,12 @@ const clickTile = (tile) => {
         maybeReveal(Math.min(tile.row + 1, boardHeight - 1), tile.col);
         maybeReveal(tile.row, Math.max(tile.col - 1, 0));
         maybeReveal(tile.row, Math.min(tile.col + 1, boardWidth - 1));
-      }, 75)
+      }, 75);
     } else if (boardState[tile.row][tile.col] === MINE) {
       showLossScreen();
     }
+
+    evaluateWin();
   }
 }
 
@@ -153,6 +155,29 @@ const flagTile = (event) => {
     } else {
       tile.classList.add('flagged');
     }
+  }
+  evaluateWin();
+}
+
+const evaluateWin = () => {
+  const flattenedBoard = boardState.flat();
+  let gameWon = true;
+  document.querySelectorAll('.tile').forEach((t, i) => {
+    const c = t.classList;
+
+    if (c.contains('revealed')) {
+      if (c.contains('mine')) {
+        gameWon = false;
+      }
+    } else {
+      if(!c.contains('flagged') || flattenedBoard[i] !== MINE) {
+        gameWon = false;
+      }
+    }
+  });
+
+  if (gameWon) {
+    showWinScreen();
   }
 }
 
