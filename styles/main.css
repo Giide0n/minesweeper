@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import "animations.css";
 
 :root {
   --tile-size: 30px;
+  --tile-background-color: #bbb;
+  --revealed-tile-background-color: #e0e0e0;
 }
 
 body {
@@ -54,7 +57,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  background-color: #bbb;
+  background-color: var(--tile-background-color);
   font-size: 21px;
   color: transparent;
 
@@ -69,29 +72,9 @@ body {
   background-image: url("../resources/flag.svg");
 }
 
-@keyframes flip {
-  from {
-    transform: rotateY(180deg);
-  }
-  to {
-    transform: rotateY(0deg);
-  }
-}
-
-@keyframes flip-bg {
-  from {
-    color: transparent;
-    background-color: #bbb;
-  }
-  33% {
-    color: inherit;
-    background-color: #e0e0e0;
-  }
-}
-
 .tile.revealed {
   animation: flip 0.6s ease, flip-bg 0.6s step-end;
-  background-color: #e0e0e0;
+  background-color: var(--revealed-tile-background-color);
   transform: rotateY(0deg);
 }
 
