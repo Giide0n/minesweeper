@@ -14,15 +14,15 @@
 <h1>Minesweeper</h1>
 
 <div class="action-bar">
-  <label>
-    <input type="radio" name="difficulty" value="easy"> Easy
-  </label>
-  <label>
-    <input type="radio" name="difficulty" value="medium" checked> Medium
-  </label>
-  <label>
-    <input type="radio" name="difficulty" value="hard"> Hard
-  </label>
+  <input type="radio" name="difficulty" id="easy" value="easy">
+  <input type="radio" name="difficulty" id="medium" value="medium" checked>
+  <input type="radio" name="difficulty" id="hard" value="hard">
+
+  <div class="difficulty-select">
+    <label for="easy">Easy</label>
+    <label for="medium">Medium</label>
+    <label for="hard">Hard</label>
+  </div>
 
   <button id="solve">Solve</button>
   <button id="restart">Restart</button>
