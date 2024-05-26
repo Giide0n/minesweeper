@@ -40,29 +40,30 @@ input[type=radio] {
   font-weight: bold;
   line-height: 2em;
   padding: 12px;
+  cursor: pointer;
 }
 
 #easy:checked ~ .difficulty-select {
-  background-color: green;
+  background-color: #4CAF50;
 }
 
-#easy:checked ~ label[for=easy] {
+#easy:checked ~ .difficulty-select label[for=easy] {
   color: white;
 }
 
 #medium:checked ~ .difficulty-select {
-  background-color: yellow;
+  background-color: #2196F3;
 }
 
-#medium:checked ~ label[for=medium] {
+#medium:checked ~ .difficulty-select label[for=medium] {
   color: white;
 }
 
 #hard:checked ~ .difficulty-select {
-  background-color: red;
+  background-color: #F44336;
 }
 
-#hard:checked ~ label[for=hard] {
+#hard:checked ~ .difficulty-select label[for=hard] {
   color: white;
 }
 
