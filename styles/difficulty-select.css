@@ -1,0 +1,52 @@
+input[type=radio] {
+  display: none;
+}
+
+.difficulty-select {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 25px;
+  background-color: #f0f0f0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.difficulty-select label {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  border-radius: 20px;
+}
+
+.difficulty-select label:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#easy:checked ~ .difficulty-select {
+  background-color: #4CAF50;
+}
+
+#easy:checked ~ .difficulty-select label[for=easy] {
+  color: #FFFFFF;
+}
+
+#medium:checked ~ .difficulty-select {
+  background-color: #2196F3;
+}
+
+#medium:checked ~ .difficulty-select label[for=medium] {
+  color: #FFFFFF;
+}
+
+#hard:checked ~ .difficulty-select {
+  background-color: #F44336;
+}
+
+#hard:checked ~ .difficulty-select label[for=hard] {
+  color: #FFFFFF;
+}
