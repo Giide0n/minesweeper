@@ -26,22 +26,25 @@ body {
 }
 
 button {
-  border: none;
-  background-color: red;
+  background-color: #A5DD9B;
+  border: 3px solid transparent;
   border-radius: 30px;
 
   color: rgba(255, 255, 255, 0.8);
   font-size: 1.2em;
   font-weight: bold;
 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 25px rgba(191, 246, 195, 0.5);
   padding: 15px 20px;
-  margin: 3px;
-}
+  transition: transform ease-in-out 0.1s, border ease-in 0.1s;
 
-button:hover {
-  border: 3px solid green;
-  margin: 0;
+  &:hover {
+    border: 3px solid #75A47F;
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
 }
 
 .popover {
