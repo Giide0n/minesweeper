@@ -1,3 +1,11 @@
+:root {
+  --tile-size: 30px;
+  --tile-background-color: #bbb;
+  --revealed-tile-background-color: #e0e0e0;
+  --animation-time: 0.6s;
+  --animation-time-flip: calc(var(--animation-time) / 3)
+}
+
 #board {
   display: flex;
   flex-wrap: wrap;
@@ -13,11 +21,21 @@
   align-items: center;
 
   background-color: var(--tile-background-color);
-  background-image: none;
+  background-size: 0;
   font-size: 21px;
   color: transparent;
 
   transform: rotateY(180deg);
+
+  &:after {
+    opacity: 0;
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+
+    transition: opacity var(--animation-time-flip) step-end;
+  }
 }
 
 .tile:hover {
@@ -31,15 +49,20 @@
 .tile.revealed {
   background-color: var(--revealed-tile-background-color);
   transform: rotateY(0deg);
-  transition: transform 0.6s ease, color 0.2s step-end, background-color 0.2s step-end, background-image 1s step-end;
+  transition: transform var(--animation-time) ease, color var(--animation-time-flip) step-end, background-color var(--animation-time-flip) step-end;
 }
 
 .tile.revealed.mine {
   background-color: red;
-  background-image: url("../resources/mine.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
   color: transparent;
+
+  &:after {
+    opacity: 1;
+
+    background-image: url("../resources/mine.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
 }
 
 .tile.revealed.number-1 {
