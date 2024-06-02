@@ -25,6 +25,25 @@ body {
   margin-bottom: 16px;
 }
 
+button {
+  border: none;
+  background-color: red;
+  border-radius: 30px;
+
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.2em;
+  font-weight: bold;
+
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px 20px;
+  margin: 3px;
+}
+
+button:hover {
+  border: 3px solid green;
+  margin: 0;
+}
+
 .popover {
   visibility: hidden;
 
