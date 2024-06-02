@@ -1,0 +1,75 @@
+#board {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tile {
+  width: var(--tile-size);
+  height: var(--tile-size);
+  margin: 2px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--tile-background-color);
+  background-image: none;
+  font-size: 21px;
+  color: transparent;
+
+  transform: rotateY(180deg);
+}
+
+.tile:hover {
+  cursor: pointer;
+}
+
+.tile.flagged {
+  background-image: url("../resources/flag.svg");
+}
+
+.tile.revealed {
+  background-color: var(--revealed-tile-background-color);
+  transform: rotateY(0deg);
+  transition: transform 0.6s ease, color 0.2s step-end, background-color 0.2s step-end, background-image 1s step-end;
+}
+
+.tile.revealed.mine {
+  background-color: red;
+  background-image: url("../resources/mine.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  color: transparent;
+}
+
+.tile.revealed.number-1 {
+  color: blue;
+}
+
+.tile.revealed.number-2 {
+  color: green;
+}
+
+.tile.revealed.number-3 {
+  color: red;
+}
+
+.tile.revealed.number-4 {
+  color: darkblue;
+}
+
+.tile.revealed.number-5 {
+  color: brown;
+}
+
+.tile.revealed.number-6 {
+  color: cyan;
+}
+
+.tile.revealed.number-7 {
+  color: black;
+}
+
+.tile.revealed.number-8 {
+  color: gray;
+}
