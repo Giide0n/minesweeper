@@ -2,7 +2,6 @@
 @import "board.css";
 @import "difficulty-select.css";
 
-
 body {
   height: 100vh;
   margin: 0;
@@ -16,8 +15,14 @@ body {
   align-items: center;
 }
 
-.action-bar {
+.bar {
   margin-bottom: 24px;
+
+  font-size: 1.2em;
+}
+
+img {
+  height: 1.2em;
 }
 
 button {

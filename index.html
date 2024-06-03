@@ -13,7 +13,7 @@
 
 <h1>Minesweeper</h1>
 
-<div class="action-bar">
+<div class="bar">
   <input type="radio" name="difficulty" id="easy" value="easy">
   <input type="radio" name="difficulty" id="medium" value="medium" checked>
   <input type="radio" name="difficulty" id="hard" value="hard">
@@ -26,6 +26,11 @@
 
   <button id="solve">Solve</button>
   <button id="restart">Restart</button>
+</div>
+
+<div class="bar">
+  <span id="flag-counter"></span>
+  <img src="resources/flag.svg" alt="flag">
 </div>
 
 <div class="popover" id="loss-screen">

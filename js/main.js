@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('restart').addEventListener('click', initializeBoard);
 
   initializeBoard();
+
+  setFlagCounter();
 });
 
 const initializeBoard = () => {
@@ -156,6 +158,7 @@ const flagTile = (event) => {
       tile.classList.add('flagged');
     }
   }
+  setFlagCounter();
   evaluateWin();
 }
 
@@ -232,4 +235,10 @@ const getTileSize = (tile) => {
   const marginRight = parseInt(style.marginRight)
 
   return width + marginLeft + marginRight;
+}
+
+const setFlagCounter = () => {
+  const flagCounter = document.getElementById('flag-counter');
+  const flagsPlaced = document.getElementsByClassName('flagged').length;
+  flagCounter.innerHTML = `${flagsPlaced} / ${numberOfMines}`;
 }
