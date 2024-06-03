@@ -55,6 +55,8 @@ const initializeBoard = () => {
 
   const tileSize = getTileSize(document.getElementsByClassName('tile').item(0));
   board.style.width = boardWidth * tileSize + 'px';
+
+  setFlagCounter();
 }
 
 const setDifficulty = () => {
