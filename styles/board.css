@@ -1,5 +1,5 @@
 :root {
-  --tile-size: 30px;
+  --tile-size: 34px;
   --tile-background-color: #bbb;
   --revealed-tile-background-color: #e0e0e0;
   --animation-time: 0.6s;
@@ -21,7 +21,6 @@
   align-items: center;
 
   background-color: var(--tile-background-color);
-  background-size: 0;
   font-size: 21px;
   color: transparent;
 
