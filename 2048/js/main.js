@@ -3,6 +3,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   spawnTile();
   spawnTile();
+
+  document.addEventListener('keydown', (event) => {
+    switch (event.key) {
+      case 'ArrowUp':
+        break;
+      case 'ArrowDown':
+        break;
+      case 'ArrowLeft':
+        break;
+      case 'ArrowRight':
+        break;
+      default:
+        break;
+    }
+  });
 });
 
 const initializeBoard = () => {
